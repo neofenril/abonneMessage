@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="objets_metiers.Abonne" table="abonne">
+        <id name="id" column="id">
+            <generator class="increment" />
+        </id>
+        <property name="mdp" />
+        <property name="login" />
+        <joined-subclass name="objets_metiers.Particulier" table="particulier">
+            <key column="id"/>
+            <property name="nom"/>
+            <property name="prenom"/>
+        </joined-subclass>
+        <joined-subclass name="objets_metiers.Entreprise" table="entreprise">
+            <key column="id"/>
+            <property name="raisonSociale" column="raison_sociale"/>
+        </joined-subclass>
+    </class>
+</hibernate-mapping>
