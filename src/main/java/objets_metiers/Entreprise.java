@@ -5,6 +5,9 @@
  */
 package objets_metiers;
 
+import org.hibernate.Session;
+import util.HibernateUtil;
+
 /**
  *
  * @author Yohann
@@ -29,5 +32,19 @@ public class Entreprise extends Abonne{
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public static void addEntreprise(String rs, String login, String mdp) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
+        Entreprise nvEntreprise = new Entreprise();
+        nvEntreprise.setRaisonSociale(rs);
+        nvEntreprise.setLogin(login);
+        nvEntreprise.setMdp(mdp);
+        session.save(nvEntreprise);
+        
+        session.getTransaction().commit();
+        session.close();
     }
 }

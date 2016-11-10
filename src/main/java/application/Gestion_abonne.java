@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import objets_metiers.Abonne;
 import objets_metiers.Particulier;
+import objets_metiers.Entreprise;
 
 /**
  *
@@ -32,37 +33,46 @@ public class Gestion_abonne extends HttpServlet {
         if (action != null) {
             switch (action) {
                 case "ajout":
-                    addParticulier(request);
+                    addAbonne(request);
                     break;
                 case "connection":
                     connectionAbonne(request);
                     break;
             }
         }
- 
+
         this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_abonne.jsp").forward(request, response);
     }
 
-    public static void addParticulier(HttpServletRequest request) {
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
+    public static void addAbonne(HttpServletRequest request) {
+        String typeAbonne = request.getParameter("typeAbonne");
+        String login = request.getParameter("login");
+        String mdp = request.getParameter("mdp");
+        boolean abonneExiste = Abonne.abonneExiste(login);
+        
+        if (typeAbonne == "particulier") {
+            String nom = request.getParameter("nom");
+            String prenom = request.getParameter("prenom");
+
+            if (nom != null && prenom != null && login != null && mdp != null && abonneExiste != true) {
+                Particulier.addParticulier(nom, prenom, login, mdp);
+            }
+        } else {
+            String rs = request.getParameter("raison_sociale");
+
+            if (rs != null && login != null && mdp != null && abonneExiste != true) {
+                Entreprise.addEntreprise(rs, login, mdp);
+            }
+        }
+    }
+
+    public static void connectionAbonne(HttpServletRequest request) {
         String login = request.getParameter("login");
         String mdp = request.getParameter("mdp");
 
-        boolean abonneExiste = Abonne.abonneExiste(login);
-        
-        if (nom != null && prenom != null && login != null && mdp != null && abonneExiste!=true) {
-            Particulier.addParticulier(nom, prenom, login, mdp);
-        }
-    }
-    
-    public static void connectionAbonne(HttpServletRequest request){
-        String login = request.getParameter("login");
-        String mdp = request.getParameter("mdp");
-        
         Abonne abonneExiste = Abonne.connectionAbonne(login, mdp);
-            
-        if(abonneExiste != null){
+
+        if (abonneExiste != null) {
             request.setAttribute("abonne", abonneExiste);
             System.out.println(abonneExiste);
         }

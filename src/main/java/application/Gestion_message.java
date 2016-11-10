@@ -5,8 +5,6 @@
  */
 package application;
 
-import static application.Gestion_abonne.addParticulier;
-import static application.Gestion_abonne.connectionAbonne;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

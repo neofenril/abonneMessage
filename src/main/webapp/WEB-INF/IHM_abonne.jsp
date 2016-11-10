@@ -26,17 +26,20 @@
         <div class="login-page">
             <div class="form">
                 <form class="register-form" action="<c:url value="/abonne"/>" method="POST">
-                    <input type="text" name="nom" placeholder="nom"/>
-                    <input type="text" name="prenom" placeholder="prenom"/>
-                    <input type="text" name="login" placeholder="login"/>
-                    <input type="password" name="mdp" placeholder="password"/>
+                    Particulier <input class="typeAbonne" type="radio" name="typeAbonne" value="particulier" checked/>
+                    Entreprise <input class="typeAbonne" type="radio" name="typeAbonne" value="entreprise" />
+                    <input class="inputForm" id="nom" type="text" name="nom" placeholder="nom"/>
+                    <input class="inputForm" id="prenom" type="text" name="prenom" placeholder="prenom"/>
+                    <input class="inputForm" id="raison_sociale" style="display:none" type="text" name="raison_sociale" placeholder="raison sociale"/>
+                    <input class="inputForm" type="text" name="login" placeholder="login"/>
+                    <input class="inputForm" type="password" name="mdp" placeholder="password"/>
                     <input type="hidden" name="gestion_abonne" value="ajout"/>
                     <button type="submit">Créer</button>
                     <p class="message">Déjà Inscrit? <a href="#">Se Connecter</a></p>
                 </form>
                 <form class="login-form" action="<c:url value="/abonne"/>" method="POST">
-                    <input type="text" name="login" placeholder="login"/>
-                    <input type="password" name="mdp" placeholder="password"/>
+                    <input class="inputForm" type="text" name="login" placeholder="login"/>
+                    <input class="inputForm" type="password" name="mdp" placeholder="password"/>
                     <input type="hidden" name="gestion_abonne" value="connection"/>
                     <button type="submit">Se Connecter</button>
                     <p class="message">Non Inscrit? <a href="#">Créer un Compte</a></p>
@@ -46,6 +49,17 @@
         <script>
             $('.message a').click(function () {
                 $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+            });
+            $('.typeAbonne').change(function () {
+                if($('.typeAbonne:checked').val()=="entreprise"){     
+                    $('#raison_sociale').show();
+                    $('#nom').hide();
+                    $('#prenom').hide();
+                }else{
+                    $('#raison_sociale').hide();
+                    $('#nom').show();
+                    $('#prenom').show();
+                }
             });
         </script>
     </body>
