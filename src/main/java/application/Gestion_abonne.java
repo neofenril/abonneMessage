@@ -50,7 +50,7 @@ public class Gestion_abonne extends HttpServlet {
         String mdp = request.getParameter("mdp");
         boolean abonneExiste = Abonne.abonneExiste(login);
         
-        if (typeAbonne == "particulier") {
+        if (!typeAbonne.equals("raison_sociale")) {
             String nom = request.getParameter("nom");
             String prenom = request.getParameter("prenom");
 
@@ -73,8 +73,7 @@ public class Gestion_abonne extends HttpServlet {
         Abonne abonneExiste = Abonne.connectionAbonne(login, mdp);
 
         if (abonneExiste != null) {
-            request.setAttribute("abonne", abonneExiste);
-            System.out.println(abonneExiste);
+            request.setAttribute("abonne", abonneExiste.getId());
         }
     }
 }

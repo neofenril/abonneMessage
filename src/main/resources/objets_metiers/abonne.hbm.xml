@@ -7,6 +7,10 @@
         </id>
         <property name="mdp" />
         <property name="login" />
+        <set name="lesMessages" inverse="true" >
+            <key column="id_abonne"/>
+            <one-to-many class="objets_metiers.Message" />
+        </set>
         <joined-subclass name="objets_metiers.Particulier" table="particulier">
             <key column="id"/>
             <property name="nom"/>

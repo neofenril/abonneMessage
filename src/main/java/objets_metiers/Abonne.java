@@ -5,7 +5,9 @@
  */
 package objets_metiers;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
@@ -18,6 +20,7 @@ public class Abonne {
     private int id;
     private String mdp;
     private String login;
+    private Set<Message> lesMessages = new HashSet<Message>();
     
     public Abonne(){}
 
@@ -47,6 +50,14 @@ public class Abonne {
     
     public static void addAbonne(){
         
+    }
+
+    public Set<Message> getLesMessages() {
+        return lesMessages;
+    }
+
+    public void setLesMessages(Set<Message> lesMessages) {
+        this.lesMessages = lesMessages;
     }
     
     public static Abonne connectionAbonne(String login, String mdp){

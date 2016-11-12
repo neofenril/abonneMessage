@@ -19,6 +19,7 @@
     </head>
     <%
        if(request.getAttribute("abonne")!=null){
+            session.setAttribute("abonne", request.getAttribute("abonne"));
             response.sendRedirect("./message");
        }
     %>
