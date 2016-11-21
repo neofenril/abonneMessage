@@ -40,10 +40,15 @@ public class Gestion_abonne extends HttpServlet {
                     this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_abonne.jsp").forward(request, response);
                     break;
                 case "connection":
-                    connectionAbonne(request);
-                    List<HashMap> messages = Message.getMessages();
-                    request.setAttribute("messages", messages);
-                    this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_message.jsp").forward(request, response);
+                    Abonne abonneExiste = connectionAbonne(request);
+                    if(abonneExiste != null){
+                        List<HashMap> messages = Message.getMessages();
+                        request.setAttribute("messages", messages);
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_message.jsp").forward(request, response);
+                    }else{
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_abonne.jsp").forward(request, response);
+                    }
+                    
                     break;
             }
         }
@@ -72,7 +77,7 @@ public class Gestion_abonne extends HttpServlet {
         }
     }
 
-    public static void connectionAbonne(HttpServletRequest request) {
+    public static Abonne connectionAbonne(HttpServletRequest request) {
         String login = request.getParameter("login");
         String mdp = request.getParameter("mdp");
 
@@ -81,5 +86,6 @@ public class Gestion_abonne extends HttpServlet {
         if (abonneExiste != null) {
             request.setAttribute("abonne", abonneExiste.getId());
         }
+        return abonneExiste;
     }
 }
