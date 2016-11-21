@@ -20,7 +20,10 @@
         <title>Connection</title>
     </head>
     <%
-       if(session.getAttribute("abonne")==null){
+        
+       if(request.getAttribute("abonne")!=null){
+            session.setAttribute("abonne", request.getAttribute("abonne"));
+       } else if(session.getAttribute("abonne")==null){
             response.sendRedirect("./abonne");
        }
     %>
