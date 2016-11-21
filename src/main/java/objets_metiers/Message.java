@@ -85,6 +85,7 @@ public class Message {
             h.put("objet", ((Message)o).getObjet());
             h.put("corps", ((Message)o).getCorps());
             h.put("login", ((Message)o).getAbonne().getLogin());
+            h.put("id", ((Message)o).getAbonne().getId());
             res.add(h);
         }
         session.close();

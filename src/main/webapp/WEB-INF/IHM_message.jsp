@@ -19,6 +19,11 @@
         <script type="text/javascript" src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <title>Connection</title>
     </head>
+    <%
+       if(session.getAttribute("abonne")==null){
+            response.sendRedirect("./abonne");
+       }
+    %>
     <body>
         <div class="message-page">
             <div class="list-group">
@@ -36,9 +41,12 @@
                     List<HashMap> messages = (List<HashMap>) request.getAttribute("messages");
                     if (messages != null) {
                         for (HashMap h : messages) {
+                            String login = (String)h.get("login");
+                            if((Integer)h.get("id") == (Integer)session.getAttribute("abonne")){
+                                login = "vous";
+                            }
                             String objet = (String)h.get("objet");
                             String corps = (String)h.get("corps");
-                            String login = (String)h.get("login");
                 %>
                 <li class="list-group-item list-group-item-action">
                     <h4 class="list-group-item-heading"><%=objet%><i style="font-size:12px;"><%=" posté par "+login%></i></h4>

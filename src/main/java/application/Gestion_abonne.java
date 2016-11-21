@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import objets_metiers.Abonne;
 import objets_metiers.Particulier;
-import objets_metiers.Entreprise;
+import objets_metiers.Entreprise; 
 
 /**
  *

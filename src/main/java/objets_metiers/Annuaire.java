@@ -5,6 +5,9 @@
  */
 package objets_metiers;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author Yohann
@@ -12,6 +15,7 @@ package objets_metiers;
 public class Annuaire {
     private int id;
     private String nom;
+    private Set<Abonne> listeAbonne = new HashSet<Abonne>();
     
     public Annuaire(){}
 
@@ -29,5 +33,13 @@ public class Annuaire {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public Set<Abonne> getListeAbonne(){
+        return listeAbonne;
+    }
+    
+    public void setListeAbonne(Set<Abonne> listeAbonne) {
+        this.listeAbonne = listeAbonne;
     }
 }

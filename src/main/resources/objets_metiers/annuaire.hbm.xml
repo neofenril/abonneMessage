@@ -6,9 +6,9 @@
             <generator class="increment" />
         </id>
         <property name="nom" />
-        <!---<set name="abonnes" cascade="all">
-            <key column="abonne_id"/>
-            <one-to-many class="objets_metiers.Abonne"/>
-        </set>-->
+        <set name="listeAbonne" table="listeAbonne">
+            <key column="id"/>
+            <many-to-many column="idAbonne" class="objets_metiers.Abonne"/>
+        </set> 
     </class>
 </hibernate-mapping>
