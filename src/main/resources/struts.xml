@@ -1,0 +1,27 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.custom.i18n.resources" value="controle.package" />  
+    <package name="Exemple02" namespace="/" extends="struts-default">  
+        <default-action-ref name="Identification" />
+      
+        <action name="Identification" >
+            <result>/identification.jsp</result>
+        </action>
+        
+        <action name="ValiderIdentification" class="controle.ValiderIdentification" >
+            <result name="input">/identification.jsp</result>
+            <result name="success">/accueil.jsp</result>
+        </action>
+        
+        <action name="ValiderInscription" class="controle.ValiderInscription" >
+            <result name="input">/inscription.jsp</result>
+            <result name="success">/accueil.jsp</result>
+        </action>
+            
+        <action name="Inscription">
+            <result>/inscription.jsp</result>
+        </action>
+    </package>  
+</struts>
